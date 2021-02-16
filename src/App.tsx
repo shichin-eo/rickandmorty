@@ -30,15 +30,8 @@ const App = () => {
   const [theme, setTheme] = useState("light");
   const [filters, setFilters] = useState<string[]>([]);
 
-  const filtersHandler = (filter: string, action: string) => {
-    switch (action) {
-      case "add":
-        if (!filters.includes(filter)) setFilters((prev) => [...prev, filter]);
-        break;
-      case "delete":
-        setFilters((prev) => [...prev].filter((elem) => elem !== filter));
-        break;
-    }
+  const filtersHandler = (filters: string[]) => {
+    setFilters(filters);
   };
 
   const themeToggler = () => {

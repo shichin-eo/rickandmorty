@@ -5,7 +5,7 @@ import Flex from "./Flex";
 
 interface FilterI {
   filters: string[];
-  filtersHandler: (filter: string, action: string) => void;
+  filtersHandler: (filters: string[]) => void;
 }
 
 const Filter: React.FC<FilterI> = (props) => {
@@ -26,14 +26,21 @@ const Filter: React.FC<FilterI> = (props) => {
           margin="2%"
         >
           {filter}
-          <Button onClick={() => filtersHandler(filter, "delete")}>X</Button>
+          <Button
+            onClick={() => filtersHandler(filters.filter((i) => i !== filter))}
+          >
+            X
+          </Button>
         </Flex>
       ))}
       <Button width="30%" border={true} height="100%" onClick={toggleHandler}>
         {toggle ? "Hide filters" : "Add filter"}
       </Button>
       {toggle ? (
-        <DropdownMenu filtersHandler={filtersHandler}></DropdownMenu>
+        <DropdownMenu
+          filters={filters}
+          filtersHandler={filtersHandler}
+        ></DropdownMenu>
       ) : null}
     </Flex>
   );

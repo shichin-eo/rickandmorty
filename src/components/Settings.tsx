@@ -7,7 +7,7 @@ interface SettingsI {
   onClick?: () => void;
   theme?: string;
   filters: string[];
-  filtersHandler: (filter: string, action: string) => void;
+  filtersHandler: (filters: string[]) => void;
 }
 
 const Settings: React.FC<SettingsI> = (props) => {
