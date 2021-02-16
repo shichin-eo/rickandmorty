@@ -34,6 +34,7 @@ const EpisodesList: React.FC<EpisodeListI> = (props) => {
   );
   const { characters } = useTypedSelector((state) => state.characters);
   const { fetchEpisodes, setEpisodesPage } = useActions();
+
   const currentCharacterHandler = (char: Character) => {
     setCurrentCharacter(char);
   };
@@ -46,8 +47,7 @@ const EpisodesList: React.FC<EpisodeListI> = (props) => {
 
   useEffect(() => {
     fetchEpisodes(page);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page]);
+  }, [fetchEpisodes, page]);
 
   const setEpisodeCharacters = (arr: string[]): Character[] => {
     let result: Character[] | undefined = [];
