@@ -1,22 +1,22 @@
-import React, {useState} from 'react';
-import styled, {ThemeProvider, createGlobalStyle} from 'styled-components'
-import EpisodesList from './components/EpisodesList';
-import Settings from './components/Settings';
-import { darkTheme, lightTheme } from './themes/themes';
+import React, { useState } from "react";
+import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
+import EpisodesList from "./components/EpisodesList";
+import Settings from "./components/Settings";
+import { darkTheme, lightTheme } from "./themes/themes";
 
 const AppWrapper = styled.div`
   width: 100%;
   min-height: 100vh;
   padding: 2rem;
-  background: ${props => props.theme.body};
-  color: ${props => props.theme.fontColor};
+  background: ${(props) => props.theme.body};
+  color: ${(props) => props.theme.fontColor};
   font-size: 1rem;
   font-family: sans-serif;
-`
+`;
 
 type Props = {
   theme: typeof darkTheme;
-}
+};
 
 const Global = createGlobalStyle<Props>`
 *{
@@ -24,39 +24,40 @@ const Global = createGlobalStyle<Props>`
   padding: 0;
   box-sizing: border-box;
 }
-`
+`;
 
 const App = () => {
-  const [theme, setTheme] = useState('light');
-  const [filters, setFilters] = useState<string []>([]);
+  const [theme, setTheme] = useState("light");
+  const [filters, setFilters] = useState<string[]>([]);
 
   const filtersHandler = (filter: string, action: string) => {
     switch (action) {
-        case "add" :
-            if (!filters.includes(filter)) 
-            setFilters((prev) => [...prev, filter]);
-            break;
-        case "delete" : 
-            setFilters(prev => [...prev].filter(elem => elem !== filter));
-            break;
+      case "add":
+        if (!filters.includes(filter)) setFilters((prev) => [...prev, filter]);
+        break;
+      case "delete":
+        setFilters((prev) => [...prev].filter((elem) => elem !== filter));
+        break;
     }
-}
+  };
 
   const themeToggler = () => {
-    theme === 'light' ? setTheme('dark') : setTheme('light');
-  }
+    theme === "light" ? setTheme("dark") : setTheme("light");
+  };
   return (
-    <ThemeProvider theme={theme === "light" ? lightTheme: darkTheme}>
-      <Global/>
-      <AppWrapper >
-        <Settings onClick={themeToggler} theme={theme} filters={filters} filtersHandler={filtersHandler}/>
-        <EpisodesList filters={filters}/>
+    <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+      <Global />
+      <AppWrapper>
+        <Settings
+          onClick={themeToggler}
+          theme={theme}
+          filters={filters}
+          filtersHandler={filtersHandler}
+        />
+        <EpisodesList filters={filters} />
       </AppWrapper>
     </ThemeProvider>
   );
 };
 
 export default App;
-
-
-
