@@ -27,8 +27,9 @@ const DropdownMenu: React.FC<DropdownMenuI> = (props) => {
   return (
     <StyledDropdownMeny {...props}>
       <Flex direction="column">
-        {filterTypes.map((filter) => (
+        {filterTypes.map((filter, index) => (
           <Button
+            key={index}
             height="5vh"
             hover={true}
             onClick={() => {

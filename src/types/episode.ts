@@ -1,5 +1,5 @@
 export interface EpisodeState {
-  episodes: any[];
+  episodes: Episode[];
   loading: boolean;
   error: null | string;
   page: number;
@@ -14,12 +14,22 @@ export enum EpisodeActionTypes {
   SET_EPISODES_AMOUNT_PAGES = "SET_EPISODES_AMOUNT_PAGES",
 }
 
+export interface Episode {
+  air_date: string;
+  characters: string[];
+  created: string;
+  episode: string;
+  id: number;
+  name: string;
+  url: string;
+}
+
 interface FetchEpisodesAction {
   type: EpisodeActionTypes.FETCH_EPISODES;
 }
 interface FetchEpisodesSuccessAction {
   type: EpisodeActionTypes.FETCH_EPISODES_SUCCESS;
-  payload: any[];
+  payload: Episode[];
 }
 interface FetchEpisodesErrorAction {
   type: EpisodeActionTypes.FETCH_EPISODES_ERROR;

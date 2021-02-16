@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useActions } from "../hooks/useActions";
 import { useTypedSelector } from "../hooks/useTypedSelector";
+import { Character } from "../types/character";
 import Button from "./Button";
 import Flex from "./Flex";
 import Header from "./Header";
@@ -14,18 +15,31 @@ interface EpisodeListI {
 const EpisodesList: React.FC<EpisodeListI> = (props) => {
   const { filters } = props;
   const [isOpen, setIsOpen] = useState(false);
-  const [currentCharacter, setCurrentCharacter] = useState({});
+  const [currentCharacter, setCurrentCharacter] = useState<Character>({
+    created: "",
+    episode: [],
+    gender: "",
+    id: 0,
+    image: "",
+    location: { name: "", url: "" },
+    name: "",
+    origin: { name: "", url: "" },
+    species: "",
+    status: "",
+    type: "",
+    url: "",
+  });
   const { episodes, error, loading, page, amountPages } = useTypedSelector(
     (state) => state.episodes
   );
   const { characters } = useTypedSelector((state) => state.characters);
   const { fetchEpisodes, setEpisodesPage } = useActions();
-  const currentCharacterHandler = (char: any) => {
+  const currentCharacterHandler = (char: Character) => {
     setCurrentCharacter(char);
   };
   const pages = Array.from({ length: amountPages + 1 }, (v, k) => k + 1);
 
-  const profileHandler = (char: any) => {
+  const profileHandler = (char: Character) => {
     setIsOpen(true);
     currentCharacterHandler(char);
   };
@@ -35,8 +49,8 @@ const EpisodesList: React.FC<EpisodeListI> = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
-  const setEpisodeCharacters = (arr: any[]): any[] => {
-    let result: any[] | undefined = [];
+  const setEpisodeCharacters = (arr: string[]): Character[] => {
+    let result: Character[] | undefined = [];
     for (let elem of arr) {
       const ind = characters.filter((char) => {
         return char["url"] === elem;

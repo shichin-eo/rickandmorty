@@ -3,11 +3,12 @@ import styled, { keyframes } from "styled-components";
 import Button from "./Button";
 import ReactDom from "react-dom";
 import Flex from "./Flex";
+import { Character } from "../types/character";
 
 interface ProfileI {
   open?: boolean;
   onClose?: () => void;
-  char?: any;
+  char?: Character;
 }
 
 const fadeInAnimation = keyframes`
@@ -88,9 +89,9 @@ const Profile: React.FC<ProfileI> = (props) => {
                   align="center"
                   fontsize="1.5vw"
                 >
-                  {char.name}
+                  {char?.name}
                 </Flex>
-                <StyledImg src={char.image} alt={char.name}></StyledImg>
+                <StyledImg src={char?.image} alt={char?.name}></StyledImg>
               </Flex>
               <Flex
                 direction="column"
@@ -113,7 +114,7 @@ const Profile: React.FC<ProfileI> = (props) => {
                     align="center"
                     margin="0 10%"
                   >
-                    {char.gender}
+                    {char?.gender}
                   </Flex>
                 </Flex>
                 <Flex height="20%" justify="center">
@@ -131,7 +132,7 @@ const Profile: React.FC<ProfileI> = (props) => {
                     align="center"
                     margin="0 10%"
                   >
-                    {char.location.name}
+                    {char?.location?.name}
                   </Flex>
                 </Flex>
                 <Flex height="20%" justify="center">
@@ -149,7 +150,7 @@ const Profile: React.FC<ProfileI> = (props) => {
                     align="center"
                     margin="0 10%"
                   >
-                    {char.species}
+                    {char?.species}
                   </Flex>
                 </Flex>
                 <Flex height="20%" justify="center">
@@ -167,7 +168,7 @@ const Profile: React.FC<ProfileI> = (props) => {
                     align="center"
                     margin="0 10%"
                   >
-                    {char.status}
+                    {char?.status}
                   </Flex>
                 </Flex>
                 <Flex height="20%" align="center" justify="center">
