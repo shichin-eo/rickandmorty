@@ -2,7 +2,7 @@ export interface EpisodeState {
   episodes: Episode[];
   loading: boolean;
   error: null | string;
-  page: number;
+  page: number | string;
   amountPages: number;
 }
 

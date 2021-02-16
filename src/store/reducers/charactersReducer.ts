@@ -9,6 +9,7 @@ const initialState: CharacterState = {
   loading: false,
   error: null,
   page: 1,
+  currentChar: null,
 };
 
 export const charactersReducer = (
@@ -23,6 +24,12 @@ export const charactersReducer = (
         ...state,
         loading: false,
         characters: action.payload,
+      };
+    case CharacterActionTypes.FETCH_CHAR_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        currentChar: action.payload,
       };
     case CharacterActionTypes.FETCH_CHARACTERS_ERROR:
       return { ...state, loading: false, error: action.payload };

@@ -8,10 +8,11 @@ import {
 } from "../../types/episode";
 import api from "../../api/api";
 
-export const fetchEpisodes = (page = 1) => {
+export const fetchEpisodes = (page: string | number = 1) => {
   return async (dispatch: Dispatch<EpisodeAction | CharacterAction>) => {
     try {
       dispatch({ type: EpisodeActionTypes.FETCH_EPISODES });
+
       const response = await axios.get(api.episode, {
         params: { page: page },
       });
@@ -20,6 +21,7 @@ export const fetchEpisodes = (page = 1) => {
         payload: response.data.info.pages,
       });
       const episodes = response.data.results;
+
       const characters: string[] = [];
       const REGEXP = /[^/]+$/;
       episodes.forEach((episode: Episode) => {

@@ -3,6 +3,8 @@ import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
 import EpisodesList from "./components/EpisodesList";
 import Settings from "./components/Settings";
 import { darkTheme, lightTheme } from "./themes/themes";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Char from "./components/Char";
 
 const AppWrapper = styled.div`
   width: 100%;
@@ -38,18 +40,31 @@ const App = () => {
     theme === "light" ? setTheme("dark") : setTheme("light");
   };
   return (
-    <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
-      <Global />
-      <AppWrapper>
-        <Settings
-          onClick={themeToggler}
-          theme={theme}
-          filters={filters}
-          filtersHandler={filtersHandler}
-        />
-        <EpisodesList filters={filters} />
-      </AppWrapper>
-    </ThemeProvider>
+    <BrowserRouter>
+      <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+        <Global />
+        <AppWrapper>
+          <Settings
+            onClick={themeToggler}
+            theme={theme}
+            filters={filters}
+            filtersHandler={filtersHandler}
+          />
+          <Switch>
+            <Route exact path="/">
+              <EpisodesList filters={filters} />
+            </Route>
+            <Route exact path="/episode/:id">
+              <EpisodesList filters={filters} />
+            </Route>
+            <Route exact path="/character/:id">
+              <Char />
+            </Route>
+            <Route path="/" render={() => <div>404</div>}></Route>
+          </Switch>
+        </AppWrapper>
+      </ThemeProvider>
+    </BrowserRouter>
   );
 };
 

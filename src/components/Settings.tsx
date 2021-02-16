@@ -14,12 +14,14 @@ const Settings: React.FC<SettingsI> = (props) => {
   return (
     <Flex justify="flex-end" width="100%" height="4vh">
       <Filter filters={props.filters} filtersHandler={props.filtersHandler} />
-      <Button
-        icon={props.theme}
-        width="3vh"
-        height="3vh%"
-        onClick={props.onClick}
-      ></Button>
+      <Flex width="3vh" justify="center" align="center">
+        <Button
+          icon={props.theme}
+          width="3vh"
+          height="3vh"
+          onClick={props.onClick}
+        />
+      </Flex>
     </Flex>
   );
 };

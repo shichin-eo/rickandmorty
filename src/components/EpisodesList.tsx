@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useParams, useHistory } from "react-router-dom";
 import { useActions } from "../hooks/useActions";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { Character } from "../types/character";
@@ -12,7 +13,13 @@ interface EpisodeListI {
   filters?: string[];
 }
 
+interface EpisodeRouteParams {
+  id: string;
+}
+
 const EpisodesList: React.FC<EpisodeListI> = (props) => {
+  const { id } = useParams<EpisodeRouteParams>();
+  const history = useHistory();
   const { filters } = props;
   const [isOpen, setIsOpen] = useState(false);
   const [currentCharacter, setCurrentCharacter] = useState<Character>({
@@ -29,7 +36,7 @@ const EpisodesList: React.FC<EpisodeListI> = (props) => {
     type: "",
     url: "",
   });
-  const { episodes, error, loading, page, amountPages } = useTypedSelector(
+  const { episodes, error, loading, amountPages } = useTypedSelector(
     (state) => state.episodes
   );
   const { characters } = useTypedSelector((state) => state.characters);
@@ -46,8 +53,8 @@ const EpisodesList: React.FC<EpisodeListI> = (props) => {
   };
 
   useEffect(() => {
-    fetchEpisodes(page);
-  }, [fetchEpisodes, page]);
+    fetchEpisodes(id);
+  }, [fetchEpisodes, id]);
 
   const setEpisodeCharacters = (arr: string[]): Character[] => {
     let result: Character[] | undefined = [];
@@ -81,6 +88,7 @@ const EpisodesList: React.FC<EpisodeListI> = (props) => {
           height="100%"
           icon="home"
           onClick={() => {
+            history.push("/");
             setEpisodesPage(1);
           }}
         >
@@ -91,7 +99,7 @@ const EpisodesList: React.FC<EpisodeListI> = (props) => {
   }
   return (
     <div>
-      <NavBar pages={pages} currentPage={page} />
+      <NavBar pages={pages} currentPage={id} />
       <Profile
         char={currentCharacter}
         open={isOpen}
@@ -134,26 +142,40 @@ const EpisodesList: React.FC<EpisodeListI> = (props) => {
                     wrap="wrap"
                     margin="5px"
                     border={true}
-                    justify="center"
+                    justify="space-around"
                     align="center"
                     radius="10px"
                   >
                     <Flex
-                      height="3vh"
-                      width="75%"
+                      height="100%"
+                      width="70%"
                       justify="center"
                       align="center"
                     >
                       {elem.name}
                     </Flex>
-                    <Button
-                      height="100%"
-                      width="25%"
-                      icon="profile"
-                      onClick={() => profileHandler(elem)}
-                    >
-                      Open profile
-                    </Button>
+                    <Flex width="10%">
+                      <Button
+                        icon="link"
+                        height="100%"
+                        width="10%"
+                        onClick={() => {
+                          history.push(`/character/${elem.id}`);
+                        }}
+                      >
+                        Go
+                      </Button>
+                    </Flex>
+                    <Flex width="10%">
+                      <Button
+                        height="100%"
+                        width="10%"
+                        icon="profile"
+                        onClick={() => profileHandler(elem)}
+                      >
+                        Open profile
+                      </Button>
+                    </Flex>
                   </Flex>
                 );
               })}
@@ -161,7 +183,7 @@ const EpisodesList: React.FC<EpisodeListI> = (props) => {
           </Flex>
         ))}
       </Flex>
-      <NavBar pages={pages} currentPage={page} />
+      <NavBar pages={pages} currentPage={id} />
     </div>
   );
 };

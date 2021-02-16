@@ -3,11 +3,13 @@ export interface CharacterState {
   loading: boolean;
   error: null | string;
   page: number;
+  currentChar: Character | null;
 }
 
 export enum CharacterActionTypes {
   FETCH_CHARACTERS = "FETCH_CHARACTERS",
   FETCH_CHARACTERS_SUCCESS = "FETCH_CHARACTERS_SUCCESS",
+  FETCH_CHAR_SUCCESS = "FETCH_CHAR_SUCCESS",
   FETCH_CHARACTERS_ERROR = "FETCH_CHARACTERS_ERROR",
 }
 
@@ -38,6 +40,10 @@ interface FetchCharactersSuccessAction {
   type: CharacterActionTypes.FETCH_CHARACTERS_SUCCESS;
   payload: Character[];
 }
+interface FetchCharSuccessAction {
+  type: CharacterActionTypes.FETCH_CHAR_SUCCESS;
+  payload: Character;
+}
 interface FetchCharactersErrorAction {
   type: CharacterActionTypes.FETCH_CHARACTERS_ERROR;
   payload: string;
@@ -46,4 +52,5 @@ interface FetchCharactersErrorAction {
 export type CharacterAction =
   | FetchCharactersAction
   | FetchCharactersSuccessAction
+  | FetchCharSuccessAction
   | FetchCharactersErrorAction;

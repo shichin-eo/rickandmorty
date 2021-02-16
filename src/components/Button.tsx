@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { File, Sun, Moon, Home } from "react-feather";
+import { File, Sun, Moon, Home, Link } from "react-feather";
 
 interface ButtonI {
   onClick?: () => void;
@@ -36,13 +36,15 @@ const Button: React.FC<ButtonI> = (props) => {
   const setIcon = () => {
     switch (props.icon) {
       case "profile":
-        return <File />;
+        return <File size={"1vw"} />;
       case "light":
-        return <Sun />;
+        return <Sun size={"1vw"} />;
       case "dark":
-        return <Moon />;
+        return <Moon size={"1vw"} />;
       case "home":
-        return <Home />;
+        return <Home size={"2vw"} />;
+      case "link":
+        return <Link size={"1vw"} />;
       default:
         return props.children;
     }

@@ -53,7 +53,7 @@ const StyledOverlay = styled.div`
 `;
 
 const StyledImg = styled.img`
-  width: 100%;
+  width: 80%;
   height: auto;
   object-fit: cover;
   border: 1px solid transparent;
