@@ -1405,15 +1405,6 @@
     "@nodelib/fs.scandir" "2.1.4"
     "fastq" "^1.6.0"
 
-"@noveo/eslint-config-codestyle@^2.1.0":
-  "integrity" "sha512-73xVRqWLQ4rGAzWQdSIocLxa4K6wI8An5LCzD6Lu2eCxKJpDXMYwMJ2sPDgT5ewlPU06ZAQS+3yBV9CkV7wqkw=="
-  "resolved" "https://registry.npmjs.org/@noveo/eslint-config-codestyle/-/eslint-config-codestyle-2.1.0.tgz"
-  "version" "2.1.0"
-  dependencies:
-    "eslint" "^6.8.0"
-    "eslint-config-airbnb-base" "^14.0.0"
-    "eslint-plugin-import" "^2.20.1"
-
 "@npmcli/move-file@^1.0.1":
   "integrity" "sha512-LtWTicuF2wp7PNTuyCwABx7nNG+DnzSE8gN0iWxkC6mpgm/iOPu0ZMTkXuCxmJxtWFsDxUaixM9COSNJEMUfuQ=="
   "resolved" "https://registry.npmjs.org/@npmcli/move-file/-/move-file-1.1.1.tgz"
