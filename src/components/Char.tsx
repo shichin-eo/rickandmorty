@@ -47,7 +47,7 @@ const Char: React.FC<CharI> = (props) => {
     <>
       <StyledChar {...props}>
         <Flex
-          border={true}
+          border
           direction="row"
           height="100%"
           justify="space-around"
@@ -144,7 +144,7 @@ const Char: React.FC<CharI> = (props) => {
             </Flex>
             <Flex height="20%" align="center" justify="center">
               <Button
-                border={true}
+                border
                 width="30%"
                 height="50%"
                 onClick={() => history.goBack()}

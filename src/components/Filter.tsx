@@ -33,7 +33,7 @@ const Filter: React.FC<FilterI> = (props) => {
           </Button>
         </Flex>
       ))}
-      <Button width="30%" border={true} height="100%" onClick={toggleHandler}>
+      <Button width="30%" border height="100%" onClick={toggleHandler}>
         {toggle ? "Hide filters" : "Add filter"}
       </Button>
       {toggle ? (

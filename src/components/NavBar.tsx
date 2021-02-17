@@ -21,7 +21,7 @@ const NavBar: React.FC<NavBarI> = (props) => {
           key={i}
           width="5%"
           height="3vh"
-          border={true}
+          border
           opacity={Number(p) === Number(currentPage) ? "1" : "0.3"}
           onClick={() => {
             history.push(`/episode/${p}`);

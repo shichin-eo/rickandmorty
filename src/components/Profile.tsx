@@ -173,7 +173,7 @@ const Profile: React.FC<ProfileI> = (props) => {
                 </Flex>
                 <Flex height="20%" align="center" justify="center">
                   <Button
-                    border={true}
+                    border
                     width="30%"
                     height="50%"
                     onClick={props.onClose}

@@ -105,7 +105,7 @@ const EpisodesList: React.FC<EpisodeListI> = (props) => {
         open={isOpen}
         onClose={() => setIsOpen(false)}
       ></Profile>
-      <Flex direction="column" radius="5px" border={true}>
+      <Flex direction="column" radius="5px" border>
         <Header />
         {episodes.map((episode) => (
           <Flex
@@ -120,7 +120,7 @@ const EpisodesList: React.FC<EpisodeListI> = (props) => {
               justify="center"
               align="center"
               margin="5px"
-              border={true}
+              border
               radius="5px"
               fontsize="1vw"
             >
@@ -141,7 +141,7 @@ const EpisodesList: React.FC<EpisodeListI> = (props) => {
                     height="7vh"
                     wrap="wrap"
                     margin="5px"
-                    border={true}
+                    border
                     justify="space-around"
                     align="center"
                     radius="10px"
